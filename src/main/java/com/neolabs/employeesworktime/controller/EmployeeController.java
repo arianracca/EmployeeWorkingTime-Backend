@@ -32,7 +32,7 @@ public class EmployeeController {
      * */
     @GetMapping("/employees")
     public List<Employee> listAllEmployees() {
-        return employeeRepository.findAll();
+        return employeeService.findAll();
     }
 
     /**Método para OBTENER UN ÚNICO recurso de Empleado

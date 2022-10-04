@@ -23,20 +23,14 @@ public class WorkingType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long workingTypeID;
 
-//    @NotNull
-//    @NotBlank
     @Column (nullable = false, length = 50)
     private String type;
 
-//    @NotNull
-//    @NotBlank
     @Setter
     @Getter
     @Column (nullable = false, length = 5)
     private Long minHours;
-
-//    @NotNull
-//    @NotBlank
+    
     @Setter
     @Getter
     @Column (nullable = false, length = 5)

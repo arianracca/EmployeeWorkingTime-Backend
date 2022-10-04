@@ -28,7 +28,6 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
         return null;
     }
 
-
     public WorkingTime updateWorkingTime(WorkingTime workingTime) {
         return null;
     }

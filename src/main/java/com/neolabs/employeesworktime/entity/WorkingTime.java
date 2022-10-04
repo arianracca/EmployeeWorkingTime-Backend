@@ -1,16 +1,22 @@
 package com.neolabs.employeesworktime.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * Esta es la entidad de Jornadas Laborales de Empleados
@@ -27,6 +33,7 @@ public class WorkingTime {
     @Id
     @Getter
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "user_generator", initialValue = 1000)
     private Long id;
 
     @NotNull
@@ -48,35 +55,28 @@ public class WorkingTime {
     private WorkingType type;
 
     @NotNull
-    @NotBlank
     @Getter
     @Setter
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date date;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate date;
 
     @NotNull
-    @NotBlank
     @Getter
     @Setter
-    @DateTimeFormat(pattern = "hh-mm")
-    private Date startTime;
+    @JsonFormat(pattern = "HH:mm")
+    @JsonSerialize(using = LocalTimeSerializer.class)
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    private LocalTime startTime;
 
     @NotNull
-    @NotBlank
-    @Getter
-    @Setter
-    @DateTimeFormat(pattern = "hh-mm")
-    private Date endTime;
+    @JsonSerialize(using = LocalTimeSerializer.class)
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    private LocalTime endTime;
 
     private Long hours;
 
-    public WorkingTime(Employee employee, WorkingType type, Date date, Date startTime, Date endTime) {
-        this.employee = employee;
-        this.type = type;
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
 
     /** Método para setear las Horas automaticamente a partir de la hora de inicio y la de final
      * de una determinada actividad programada para la jornada laboral de un empleado específico
@@ -84,15 +84,15 @@ public class WorkingTime {
      * @param endTime la hora de finalización de la actividad programada
      * @return hours la cantidad de horas que requiere la actividad en formato Long
      */
-    public Long setHours(Date startTime, Date endTime) {
-        long numberOfMilliseconds = endTime.getTime() - startTime.getTime();
-        this.hours = TimeUnit.HOURS.convert(numberOfMilliseconds, TimeUnit.MILLISECONDS);
-        return hours;
-    }
+//    public Long setHours(@NotNull LocalTime startTime, @NotNull LocalTime endTime) {
+//        long numberOfMilliseconds = endTime.getLong() - startTime;
+//        this.hours = TimeUnit.HOURS.convert(numberOfMilliseconds, TimeUnit.MILLISECONDS);
+//        return hours;
+//    }
 
-    public Long getHours() {
-        this.hours = setHours(startTime, endTime);
-        return hours;
-    }
+//    public Long getHours() {
+//        this.hours = setHours(this.startTime, this.endTime);
+//        return hours;
+//    }
 
 }
