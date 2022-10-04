@@ -23,7 +23,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    private Long employeeID;
+    private Long id;
 
     @NotNull
     @NotBlank

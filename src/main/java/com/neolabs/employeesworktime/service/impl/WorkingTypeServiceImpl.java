@@ -6,6 +6,9 @@ import com.neolabs.employeesworktime.service.WorkingTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class WorkingTypeServiceImpl implements WorkingTypeService {
 
@@ -32,4 +35,18 @@ public class WorkingTypeServiceImpl implements WorkingTypeService {
         }
         return null;
     }
+
+    /**Método para listar todos los Tipos de Turno y actividad
+     * */
+    public List<WorkingType> getAllWorkingType() {
+        List<WorkingType> workingType = new ArrayList<>();
+        workingTypeRepository.findAll().forEach(workingType::add);
+        return workingType;
+    }
+
+
+    public WorkingType getWorkingTypeByName(String type) {
+        return workingTypeRepository.findWorkingTypeByType(type);
+    }
+
 }

@@ -9,5 +9,5 @@ public interface EmployeeService {
 
     Employee addEmployee(Employee employee);
 
-    List<Employee> findAll();
+    List<Employee> findAllEmployees();
 }

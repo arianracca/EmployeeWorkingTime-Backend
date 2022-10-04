@@ -21,7 +21,8 @@ public class WorkingType {
     @Id
     @Getter
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long workingTypeID;
+    @SequenceGenerator(name = "user_generator", initialValue = 2000)
+    private Long id;
 
     @Column (nullable = false, length = 50)
     private String type;
@@ -36,6 +37,13 @@ public class WorkingType {
     @Column (nullable = false, length = 5)
     private Long maxHours;
 
+    public WorkingType(Long id, String type, Long minHours, Long maxHours) {
+        this.id = id;
+        this.type = type;
+        this.minHours = minHours;
+        this.maxHours = maxHours;
+    }
+
     public String getType() {
         return type.toUpperCase();
     }
@@ -43,4 +51,7 @@ public class WorkingType {
     public void setType(String type) {
         this.type = type.toUpperCase();
     }
+
+
+
 }

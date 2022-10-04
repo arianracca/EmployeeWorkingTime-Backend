@@ -17,17 +17,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Esta es la entidad de Jornadas Laborales de Empleados
- * aquí se pueden listar todos los datos referidos a los distintos
+ * esta tabla estructura todos los datos referidos a los distintos
  * turnos realizados por cada empleado, sus vacaciones, días libres, etc.
   * */
-
-
 @Entity
 @NoArgsConstructor
-@Table(name = "employeesworktimes")
+@Table(name = "employeesworkingtimes")
 public class WorkingTime {
 
     @Id
@@ -37,7 +36,6 @@ public class WorkingTime {
     private Long id;
 
     @NotNull
-    @NotBlank
     @Getter
     @Setter
     @JsonIgnore
@@ -46,7 +44,6 @@ public class WorkingTime {
     private Employee employee;
 
     @NotNull
-    @NotBlank
     @Getter
     @Setter
     @JsonIgnore
@@ -57,7 +54,7 @@ public class WorkingTime {
     @NotNull
     @Getter
     @Setter
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate date;
@@ -71,6 +68,8 @@ public class WorkingTime {
     private LocalTime startTime;
 
     @NotNull
+    @Getter
+    @Setter
     @JsonSerialize(using = LocalTimeSerializer.class)
     @JsonDeserialize(using = LocalTimeDeserializer.class)
     private LocalTime endTime;
@@ -84,15 +83,14 @@ public class WorkingTime {
      * @param endTime la hora de finalización de la actividad programada
      * @return hours la cantidad de horas que requiere la actividad en formato Long
      */
-//    public Long setHours(@NotNull LocalTime startTime, @NotNull LocalTime endTime) {
-//        long numberOfMilliseconds = endTime.getLong() - startTime;
-//        this.hours = TimeUnit.HOURS.convert(numberOfMilliseconds, TimeUnit.MILLISECONDS);
-//        return hours;
-//    }
+    public Long setHours(LocalTime startTime, LocalTime endTime) {
+        long hours =  ChronoUnit.HOURS.between(endTime, startTime);
+        return hours;
+    }
 
-//    public Long getHours() {
-//        this.hours = setHours(this.startTime, this.endTime);
-//        return hours;
-//    }
+    public Long getHours() {
+        this.hours = setHours(this.startTime, this.endTime);
+        return hours;
+    }
 
 }

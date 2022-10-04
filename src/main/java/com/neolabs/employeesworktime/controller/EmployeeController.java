@@ -32,7 +32,7 @@ public class EmployeeController {
      * */
     @GetMapping("/employees")
     public List<Employee> listAllEmployees() {
-        return employeeService.findAll();
+        return employeeService.findAllEmployees();
     }
 
     /**Método para OBTENER UN ÚNICO recurso de Empleado
@@ -51,7 +51,7 @@ public class EmployeeController {
         Employee employeeAdded = employeeService.addEmployee(employee);
         if (employeeAdded != null) {
             HttpHeaders responseHeaders = new HttpHeaders();
-            responseHeaders.set(HttpHeaders.LOCATION, String.format("/employees/%d", employeeAdded.getEmployeeID()));
+            responseHeaders.set(HttpHeaders.LOCATION, String.format("/employees/%d", employeeAdded.getId()));
             return new ResponseEntity<>(employeeAdded, responseHeaders, HttpStatus.CREATED);
         }
         return ResponseEntity.badRequest().body("Error al crear el Empleado.");

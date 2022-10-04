@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface WorkingTypeRepository extends JpaRepository<WorkingType, Long> {
 
     boolean existsByType(String type);
+    WorkingType findWorkingTypeByType(String type);
 }

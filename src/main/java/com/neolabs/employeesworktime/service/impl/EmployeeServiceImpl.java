@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**Método para listar todos los empleados cargados
      * */
-    public List<Employee> findAll() {
+    public List<Employee> findAllEmployees() {
         return this.employeeRepository.findAll();
     }
 

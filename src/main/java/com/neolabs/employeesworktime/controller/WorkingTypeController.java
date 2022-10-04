@@ -30,8 +30,8 @@ public class WorkingTypeController {
     /**Método para OBTENER TODOS los recursos de Tipos de Turnos
      * */
     @GetMapping("/workingtypes")
-    public List<WorkingType> listAllWorkingTypes() {
-        return workingTypeRepository.findAll();
+    public List<WorkingType> getAllWorkingType() {
+        return workingTypeService.getAllWorkingType();
     }
 
     /**Método para OBTENER UN ÚNICO recurso de Tipo de Turno
@@ -43,6 +43,8 @@ public class WorkingTypeController {
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
 
+
+
     /**Método para CREAR el recurso de Tipo de Turno
      * */
     @PostMapping("/workingtypes")
@@ -50,7 +52,7 @@ public class WorkingTypeController {
         WorkingType workingTypeAdded = workingTypeService.addWorkingType(workingType);
         if (workingTypeAdded != null) {
             HttpHeaders responseHeaders = new HttpHeaders();
-            responseHeaders.set(HttpHeaders.LOCATION, String.format("/workingtypes/%d", workingTypeAdded.getWorkingTypeID()));
+            responseHeaders.set(HttpHeaders.LOCATION, String.format("/workingtypes/%d", workingTypeAdded.getId()));
             return new ResponseEntity<>(workingTypeAdded, responseHeaders, HttpStatus.CREATED);
         }
         return ResponseEntity.badRequest().body("Error al crear el Tipo de Turno");
