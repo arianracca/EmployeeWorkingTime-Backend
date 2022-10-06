@@ -14,13 +14,12 @@ import javax.persistence.*;
  * */
 
 @Entity
-@NoArgsConstructor
 @Table(name = "workingtypes")
 public class WorkingType {
 
     @Id
     @Getter
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "user_generator", initialValue = 2000)
     private Long id;
 
@@ -44,13 +43,44 @@ public class WorkingType {
         this.maxHours = maxHours;
     }
 
-    public String getType() {
+    
+    
+    public WorkingType() {
+	}
+
+
+
+	public String getType() {
         return type.toUpperCase();
     }
 
     public void setType(String type) {
         this.type = type.toUpperCase();
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getMinHours() {
+		return minHours;
+	}
+
+	public void setMinHours(Long minHours) {
+		this.minHours = minHours;
+	}
+
+	public Long getMaxHours() {
+		return maxHours;
+	}
+
+	public void setMaxHours(Long maxHours) {
+		this.maxHours = maxHours;
+	}
 
 
 

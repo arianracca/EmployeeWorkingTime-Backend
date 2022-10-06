@@ -1,8 +1,5 @@
 package com.neolabs.employeesworktime.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -16,13 +13,11 @@ import org.springframework.format.annotation.NumberFormat;
  * */
 
 @Entity
-@NoArgsConstructor
 @Table(name = "employees")
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -41,19 +36,40 @@ public class Employee {
     @Column (nullable = false, length = 150)
     private String email;
 
-    @Getter
-    @Setter
     @NumberFormat
     private Long phoneNumber;
+    
 
-    public Employee(String name, String lastName, String email, Long phoneNumber) {
+    public Long getId() {
+		return id;
+	}
+
+
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+    /**Método constructor formateado con estandarizacion
+     * de letras mayúsculas en nombre y apellido
+     * y letras minúsculas para email
+     * */
+	public Employee(String name, String lastName, String email, Long phoneNumber) {
         this.name = name.toUpperCase();
         this.lastName = lastName.toUpperCase();
-        this.email = email;
+        this.email = email.toLowerCase();
         this.phoneNumber = phoneNumber;
     }
 
-    //Getters y Setters con formateo normalizado de atributos
+
+    //Constructor de la clase
+    public Employee() {
+	}
+
+	//Getters y Setters con formateo normalizado de atributos
     public String getEmail() {
         return email.toLowerCase();
     }

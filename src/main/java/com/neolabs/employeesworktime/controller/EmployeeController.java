@@ -44,6 +44,13 @@ public class EmployeeController {
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
     }
 
+    /**Método para OBTENER TODOS los recursos de Empleado
+     * */
+    @GetMapping("/employees/")
+    public List<Employee> listEmployeesBy() {
+        return employeeService.findAllEmployees();
+    }
+
     /**Método para CREAR el recurso de Empleado
      * */
     @PostMapping("/employees")
