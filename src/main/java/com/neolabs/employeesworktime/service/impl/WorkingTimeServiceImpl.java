@@ -37,10 +37,9 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 		Optional<WorkingType> type = workingTypeRepository.findById(workingTimeDTO.getType());
 
 		//si no existen o no cumple los chequeos retorno null
-		if ((!employee.isPresent() || !type.isPresent())
-				&& checkWorkingTimeTypeValidDay(workingTimeDTO, workingTimeRepository)
-		) {return null;
-		} else {
+		if (!employee.isPresent() || !type.isPresent())
+		{ return null;
+		} else if (checkWorkingTimeTypeValidDay(workingTimeDTO, workingTimeRepository)) {
 			// seteo lo que vino del DTO a la clase working time
 			WorkingTime workingTime = new WorkingTime();
 			workingTime.setEmployee(employee.get());
@@ -49,8 +48,10 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 			workingTime.setEndTime(workingTimeDTO.getEndTime());
 			workingTime.setDate(workingTimeDTO.getDate());
 			workingTime.setHours(workingTimeDTO.getStartTime(), workingTimeDTO.getEndTime());
+			System.out.println(workingTime.getHours());
 			System.out.println(workingTimeDTO.getHours());
 			return workingTimeRepository.save(workingTime);
+		} else { return null;
 		}
 	}
 
@@ -92,7 +93,6 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 		Optional<Employee> employee = employeeRepository.findById(workingTimeDTO.getEmployee());
 		Optional<WorkingType> type = workingTypeRepository.findById(workingTimeDTO.getType());
 
-
 		if (workingTimeDTO.getType() == 1 //Valida en caso de turno normal
 				&& workingTimeDTO.getHours() >= type.get().getMinHours() //Horas no bajen del minimo por tipo
 				&& workingTimeDTO.getHours() <= type.get().getMaxHours() //Horas no superen el máximo por tipo
@@ -117,8 +117,6 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 					(workingTimeDTO.getEmployee(), 4L, workingTimeDTO.getDate()).isEmpty()
 		) { return true;
 		} else if (workingTimeDTO.getType() == 3 //Valida en caso de dia libre
-				&& workingTimeDTO.getHours() >= type.get().getMinHours()
-				&& workingTimeDTO.getHours() <= type.get().getMaxHours()
 				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
 				(workingTimeDTO.getEmployee(), workingTimeDTO.getType(), workingTimeDTO.getDate()).isEmpty()
 				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
@@ -129,8 +127,6 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 				(workingTimeDTO.getEmployee(), 1L, workingTimeDTO.getDate()).isEmpty()
 		) { return true;
 		} else if (workingTimeDTO.getType() == 4 //Valida en caso de vacaciones
-						&& workingTimeDTO.getHours() >= type.get().getMinHours()
-						&& workingTimeDTO.getHours() <= type.get().getMaxHours()
 						&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
 						(workingTimeDTO.getEmployee(), workingTimeDTO.getType(), workingTimeDTO.getDate()).isEmpty()
 						&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
