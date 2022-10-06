@@ -10,10 +10,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface WorkingTimeRepository extends JpaRepository<WorkingTime, Long> {
-
 
     /**
      * Query para obtener los registros de TODOS los turnos cargados por EMPLEADO
@@ -37,6 +37,7 @@ public interface WorkingTimeRepository extends JpaRepository<WorkingTime, Long> 
      * @param workingTypeId   tipo de turno
      * @param workingTimeDate fecha de la jornada laboral
      */
+    //TODO implementar en el controller
     @Query(value = "SELECT * FROM EMPLOYEESWORKINGTIMES WHERE EMPLOYEEID = :employeeId AND WORKING_TYPEID = :workingTypeId AND DATE = :workingTimeDate", nativeQuery = true)
     List<WorkingTime> findWorkingTimeByEmployeeIdAndWorkingTypeAndDate(Long employeeId, Long workingTypeId, LocalDate workingTimeDate);
 
@@ -47,6 +48,7 @@ public interface WorkingTimeRepository extends JpaRepository<WorkingTime, Long> 
      */
     @Query(value = "SELECT * FROM EMPLOYEESWORKINGTIMES WHERE EMPLOYEEID = :employeeId AND DATE = :workingTimeDate", nativeQuery = true)
     List<WorkingTime> findWorkingTimeByEmployeeAndDate(Long employeeId, LocalDate workingTimeDate);
+
 
     // TODO Una query para consultar una semana entera permitiría hacer fácil la validación por semana
 }

@@ -82,7 +82,7 @@ public class WorkingTimeController {
     /**Método para ACTUALIZAR (SOLAMENTE) la Jornada Laboral ya existente
      * */
     @PutMapping("/workingtimes/{id}")
-    public ResponseEntity<Object> updateWorkingTime(@Valid @PathVariable Long id, @Valid @RequestBody WorkingTime detailsWorkingTime){
+    public ResponseEntity<Object> updateWorkingTime(@Valid @PathVariable Long id, @RequestBody WorkingTime detailsWorkingTime){
         WorkingTime workingTime = workingTimeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No existe el registro solicitado"));
 

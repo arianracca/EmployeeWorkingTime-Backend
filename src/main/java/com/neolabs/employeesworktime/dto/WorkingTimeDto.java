@@ -80,6 +80,7 @@ public class WorkingTimeDto implements Serializable {
 	}
 
 	public Long getHours() {
+		this.hours = setHours(this.startTime, this.endTime);
 		return hours;
 	}
 

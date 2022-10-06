@@ -35,11 +35,11 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 		//Aca voy a buscar el tipo y el empleado a la base de datos con el id que agarre en postman
 		Optional<Employee> employee = employeeRepository.findById(workingTimeDTO.getEmployee());
 		Optional<WorkingType> type = workingTypeRepository.findById(workingTimeDTO.getType());
-		
-		//si no existen retorno null 
-		if ((!employee.isPresent()) || (!type.isPresent())
-			&& checkWorkingTimeTypeValidDay
-				(workingTimeDTO, workingTimeRepository))
+
+		//si no existen o no cumple los chequeos retorno null
+		if (!employee.isPresent() || !type.isPresent()
+//				&& checkWorkingTimeTypeValidDay(workingTimeDTO, workingTimeRepository)
+		)
 			return null;
 		// seteo lo que vino del DTO a la clase working time
 		WorkingTime workingTime = new WorkingTime();
@@ -84,88 +84,76 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 	 * criterios del Tipo de Turno y las validaciones de cada caso predefinido
 	 * Turno Normal, Turno Extra, Dia libre y Vacaciones
 	 * en funcion del período de tiempo DIA.
+	 * TODO IMPLEMENTAR CHEQUEO DE HORAS POR DÍA Y POR SEMANA
 	 */
 	public boolean checkWorkingTimeTypeValidDay(WorkingTimeDto workingTimeDTO, WorkingTimeRepository workingTimeRepository) {
 		//Traigo los datos de empleado y tipo de cada lista para poder operar con más facilidad
 		Optional<Employee> employee = employeeRepository.findById(workingTimeDTO.getEmployee());
 		Optional<WorkingType> type = workingTypeRepository.findById(workingTimeDTO.getType());
- //TODO IMPLEMENTAR CHEQUEO DE HORAS POR DÍA Y POR SEMANA
+//		Optional<WorkingTime> startTime = workingTimeRepository.findByStartTime(workingTimeDTO.getStartTime());
+//		Optional<WorkingTime> endTime = workingTimeRepository.findByEndTime(workingTimeDTO.getEndTime());
+//		Optional<WorkingTime> date = workingTimeRepository.findByDate(workingTimeDTO.getEndTime());
+
+
+
+
 		if (workingTimeDTO.getType() == 1 //Valida en caso de turno normal
+				&& workingTimeDTO.getHours() >= type.get().getMinHours() //Horas no bajen del minimo por tipo
+				&& workingTimeDTO.getHours() <= type.get().getMaxHours() //Horas no superen el máximo por tipo
+				//Chequea no asignar más de un turno por tipo para un empleado el mismo dia
+				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+				(workingTimeDTO.getEmployee(), workingTimeDTO.getType(), workingTimeDTO.getDate()).isEmpty()
+				//Chequea no asignar turno si ya hay asignado un día libre ese día para ese empleado
+				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+				(workingTimeDTO.getEmployee(), 3L, workingTimeDTO.getDate()).isEmpty()
+				//Chequea no asignar turno si ya hay asignadas vacaciones para ese empleado ese dia
+				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+				(workingTimeDTO.getEmployee(), 4L, workingTimeDTO.getDate()).isEmpty()
+		) { return true;
+		} else if (workingTimeDTO.getType() == 2 //Valida en caso de turno extra
+					&& workingTimeDTO.getHours() >= type.get().getMinHours()
+					&& workingTimeDTO.getHours() <= type.get().getMaxHours()
+					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+					(workingTimeDTO.getEmployee(), workingTimeDTO.getType(), workingTimeDTO.getDate()).isEmpty()
+					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+					(workingTimeDTO.getEmployee(), 3L, workingTimeDTO.getDate()).isEmpty()
+					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+					(workingTimeDTO.getEmployee(), 4L, workingTimeDTO.getDate()).isEmpty()
+		) { return true;
+		} else if (workingTimeDTO.getType() == 3 //Valida en caso de dia libre
 				&& workingTimeDTO.getHours() >= type.get().getMinHours()
 				&& workingTimeDTO.getHours() <= type.get().getMaxHours()
 				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
 				(workingTimeDTO.getEmployee(), workingTimeDTO.getType(), workingTimeDTO.getDate()).isEmpty()
 				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-				(workingTimeDTO.getEmployee(), 3L, workingTimeDTO.getDate()).isEmpty()
-				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
 				(workingTimeDTO.getEmployee(), 4L, workingTimeDTO.getDate()).isEmpty()
 				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+				(workingTimeDTO.getEmployee(), 2L, workingTimeDTO.getDate()).isEmpty()
+				&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
 				(workingTimeDTO.getEmployee(), 1L, workingTimeDTO.getDate()).isEmpty()
-		)	return true;
-			if (workingTimeDTO.getType() == 2 //Valida en caso de turno extra
-					&& workingTimeDTO.getHours() >= type.get().getMinHours()
-					&& workingTimeDTO.getHours() <= type.get().getMaxHours()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), workingTimeDTO.getType(), workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 3L, workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 4L, workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 2L, workingTimeDTO.getDate()).isEmpty()
-			)	return true;
-			if (workingTimeDTO.getType() == 3 //Valida en caso de dia libre
-					&& workingTimeDTO.getHours() >= type.get().getMinHours()
-					&& workingTimeDTO.getHours() <= type.get().getMaxHours()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), workingTimeDTO.getType(), workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 3L, workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 4L, workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 2L, workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 1L, workingTimeDTO.getDate()).isEmpty()
-			)	return true;
-			if (workingTimeDTO.getType() == 4 //Valida en caso de vacaciones
-					&& workingTimeDTO.getHours() >= type.get().getMinHours()
-					&& workingTimeDTO.getHours() <= type.get().getMaxHours()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), workingTimeDTO.getType(), workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 3L, workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 4L, workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 2L, workingTimeDTO.getDate()).isEmpty()
-					&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
-					(workingTimeDTO.getEmployee(), 1L, workingTimeDTO.getDate()).isEmpty()
-			)	return true;
-
-		return false;
+		) { return true;
+		} else if (workingTimeDTO.getType() == 4 //Valida en caso de vacaciones
+						&& workingTimeDTO.getHours() >= type.get().getMinHours()
+						&& workingTimeDTO.getHours() <= type.get().getMaxHours()
+						&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+						(workingTimeDTO.getEmployee(), workingTimeDTO.getType(), workingTimeDTO.getDate()).isEmpty()
+						&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+						(workingTimeDTO.getEmployee(), 3L, workingTimeDTO.getDate()).isEmpty()
+						&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+						(workingTimeDTO.getEmployee(), 2L, workingTimeDTO.getDate()).isEmpty()
+						&& workingTimeRepository.findWorkingTimeByEmployeeIdAndWorkingTypeAndDate
+						(workingTimeDTO.getEmployee(), 1L, workingTimeDTO.getDate()).isEmpty()
+				) {return true;
+			} else return false;
 	}
+
+
+
 }
 
 
-//	public boolean checkWorkingTimeMinMaxHours(WorkingTimeDto workingTimeDTO) {
-//		// Deja fuera del chequeo a las vacaciones y los días libres
-//		if (workingTimeDTO.getType() != 3L && workingTimeDTO.getType() != 4L) {
-//			return workingTimeDTO.getHours() > workingTimeDTO.getType().getMinHours()
-//					&& workingTimeDTO.getHours() < workingTimeDTO.getType().getMaxHours();
-//		}
-//		return true;
-//	}
 
-	/**
-	 * Método para chequear la disponibilidad del Empleado a la hora de asignar la
-	 * jornada laboral
-	 */
-//    public boolean checkEmployeeAvailability(WorkingTime workingTimeDTO, WorkingTimeRepository workingTimeRepository) {
-//        workingTimeRepository.findWorkingTimeByEmployeeIdAndDate(workingTime);
-//
-//        return false;
-//    }
+
 
 
 	/**Método para obtener sumadas la cantidad de horas de trabajo que tiene cada empleado
@@ -180,7 +168,6 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 //        // Creo una lista para devolver la respuesta
 //        List<EmployeeHoursByWorkingType> response = new ArrayList<>();
 //
-//        // Este algoritmo es muy costoso pero funciona
 //        for (int i = 0; i < employees.size(); i++) {
 //            Employee employee = employees.get(i);
 //            ArrayList<HoursByWorkingTime> hoursByWorkingTime = new ArrayList<>();

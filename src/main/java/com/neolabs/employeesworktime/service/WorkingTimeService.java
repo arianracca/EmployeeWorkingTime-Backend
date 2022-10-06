@@ -17,4 +17,6 @@ public interface WorkingTimeService {
     List<WorkingTime> getWorkingTimeByEmployeeId(Long employeeId);
 
     List<WorkingTime> getWorkingTimeByEmployeeIdAndWorkingType(Long employeeId, Long workingTypeId);
+
+
 }

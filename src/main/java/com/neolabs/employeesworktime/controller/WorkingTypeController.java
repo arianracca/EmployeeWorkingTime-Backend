@@ -43,8 +43,6 @@ public class WorkingTypeController {
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
 
-
-
     /**Método para CREAR el recurso de Tipo de Turno
      * */
     @PostMapping("/workingtypes")
