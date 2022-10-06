@@ -31,26 +31,27 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 	 * mediante el uso de DTO
 	 */
 	public WorkingTime addWorkingTime(WorkingTimeDto workingTimeDTO) {
-		
+
 		//Aca voy a buscar el tipo y el empleado a la base de datos con el id que agarre en postman
 		Optional<Employee> employee = employeeRepository.findById(workingTimeDTO.getEmployee());
 		Optional<WorkingType> type = workingTypeRepository.findById(workingTimeDTO.getType());
 
 		//si no existen o no cumple los chequeos retorno null
-		if (!employee.isPresent() || !type.isPresent()
-//				&& checkWorkingTimeTypeValidDay(workingTimeDTO, workingTimeRepository)
-		)
-			return null;
-		// seteo lo que vino del DTO a la clase working time
-		WorkingTime workingTime = new WorkingTime();
-		workingTime.setEmployee(employee.get());
-		workingTime.setType(type.get());
-		workingTime.setStartTime(workingTimeDTO.getStartTime());
-		workingTime.setEndTime(workingTimeDTO.getEndTime());
-		workingTime.setDate(workingTimeDTO.getDate());
-		workingTime.setHours(workingTimeDTO.getStartTime(), workingTimeDTO.getEndTime());
-		System.out.println(workingTimeDTO.getHours());
-		return workingTimeRepository.save(workingTime);
+		if ((!employee.isPresent() || !type.isPresent())
+				&& checkWorkingTimeTypeValidDay(workingTimeDTO, workingTimeRepository)
+		) {return null;
+		} else {
+			// seteo lo que vino del DTO a la clase working time
+			WorkingTime workingTime = new WorkingTime();
+			workingTime.setEmployee(employee.get());
+			workingTime.setType(type.get());
+			workingTime.setStartTime(workingTimeDTO.getStartTime());
+			workingTime.setEndTime(workingTimeDTO.getEndTime());
+			workingTime.setDate(workingTimeDTO.getDate());
+			workingTime.setHours(workingTimeDTO.getStartTime(), workingTimeDTO.getEndTime());
+			System.out.println(workingTimeDTO.getHours());
+			return workingTimeRepository.save(workingTime);
+		}
 	}
 
 
@@ -90,11 +91,6 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 		//Traigo los datos de empleado y tipo de cada lista para poder operar con más facilidad
 		Optional<Employee> employee = employeeRepository.findById(workingTimeDTO.getEmployee());
 		Optional<WorkingType> type = workingTypeRepository.findById(workingTimeDTO.getType());
-//		Optional<WorkingTime> startTime = workingTimeRepository.findByStartTime(workingTimeDTO.getStartTime());
-//		Optional<WorkingTime> endTime = workingTimeRepository.findByEndTime(workingTimeDTO.getEndTime());
-//		Optional<WorkingTime> date = workingTimeRepository.findByDate(workingTimeDTO.getEndTime());
-
-
 
 
 		if (workingTimeDTO.getType() == 1 //Valida en caso de turno normal
