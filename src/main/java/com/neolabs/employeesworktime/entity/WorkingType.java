@@ -1,9 +1,5 @@
 package com.neolabs.employeesworktime.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 
 
@@ -18,7 +14,6 @@ import javax.persistence.*;
 public class WorkingType {
 
     @Id
-    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "user_generator", initialValue = 2000)
     private Long id;
@@ -26,13 +21,9 @@ public class WorkingType {
     @Column (nullable = false, length = 50)
     private String type;
 
-    @Setter
-    @Getter
     @Column (nullable = false, length = 5)
     private Long minHours;
-    
-    @Setter
-    @Getter
+
     @Column (nullable = false, length = 5)
     private Long maxHours;
 
@@ -43,11 +34,9 @@ public class WorkingType {
         this.maxHours = maxHours;
     }
 
-    
-    
+
     public WorkingType() {
 	}
-
 
 
 	public String getType() {

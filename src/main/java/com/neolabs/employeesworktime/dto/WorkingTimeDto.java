@@ -84,7 +84,7 @@ public class WorkingTimeDto implements Serializable {
 	}
 
 	public Long setHours(LocalTime startTime, LocalTime endTime) {
-		long hours =  ChronoUnit.HOURS.between(startTime, endTime);
+		Long hours =  ChronoUnit.HOURS.between(startTime, endTime);
 		return hours;
 	}
     

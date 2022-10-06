@@ -17,7 +17,6 @@ public interface WorkingTimeRepository extends JpaRepository<WorkingTime, Long> 
 
     /**
      * Query para obtener los registros de TODOS los turnos cargados por EMPLEADO
-     *
      * @param employeeId del empleado
      */
     @Query(value = "SELECT * FROM EMPLOYEESWORKINGTIMES WHERE EMPLOYEEID = :employeeId ", nativeQuery = true)
@@ -26,7 +25,6 @@ public interface WorkingTimeRepository extends JpaRepository<WorkingTime, Long> 
 
     /**
      * Query para obtener los registros definiendo TIPO DE TURNO y EMPLEADO
-     *
      * @param employeeId    del empleado
      * @param workingTypeId tipo de turno
      */
@@ -35,7 +33,6 @@ public interface WorkingTimeRepository extends JpaRepository<WorkingTime, Long> 
 
     /**
      * Query para obtener los registros de turnos cargados por empleado y fecha
-     *
      * @param employeeId      del empleado
      * @param workingTypeId   tipo de turno
      * @param workingTimeDate fecha de la jornada laboral
@@ -51,4 +48,5 @@ public interface WorkingTimeRepository extends JpaRepository<WorkingTime, Long> 
     @Query(value = "SELECT * FROM EMPLOYEESWORKINGTIMES WHERE EMPLOYEEID = :employeeId AND DATE = :workingTimeDate", nativeQuery = true)
     List<WorkingTime> findWorkingTimeByEmployeeAndDate(Long employeeId, LocalDate workingTimeDate);
 
+    // TODO Una query para consultar una semana entera permitiría hacer fácil la validación por semana
 }

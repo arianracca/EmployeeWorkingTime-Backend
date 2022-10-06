@@ -55,7 +55,7 @@ public class WorkingTimeController {
     }
 
     /**Endpoint para obtener lista de registros de jornada laboral filtrada por Empleado y Tipos de turno
-     * @param employeeId el id del empleado buscado.
+     * @param employeeId id del empleado buscado.
      * @param workingTypeId id del tipo de turno buscado.
      * @return List<WorkingTime> lista de registros de jornada laboral filtrada por empleado y tipos de turno
      * */
@@ -86,7 +86,6 @@ public class WorkingTimeController {
         WorkingTime workingTime = workingTimeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No existe el registro solicitado"));
 
-        workingTime.setType(detailsWorkingTime.getType());
         workingTime.setStartTime(detailsWorkingTime.getStartTime());
         workingTime.setEndTime(detailsWorkingTime.getEndTime());
 

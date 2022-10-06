@@ -32,27 +32,32 @@ public class WorkingTime {
     @Column(name = "workingTimeID")
     private Long id;
 
+    @NotNull
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employeeID")
     private Employee employee;
 
+    @NotNull
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workingTypeID")
     private WorkingType type;
 
+    @NotNull
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private LocalDate date;
 
+    @NotNull
     @JsonFormat(pattern = "HH:mm")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonSerialize(using = LocalTimeSerializer.class)
     @JsonDeserialize(using = LocalTimeDeserializer.class)
     private LocalTime startTime;
 
+    @NotNull
     @JsonFormat(pattern = "HH:mm")
     @DateTimeFormat(pattern = "HH:mm")
     @JsonSerialize(using = LocalTimeSerializer.class)

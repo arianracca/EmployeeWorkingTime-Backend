@@ -54,8 +54,7 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 	}
 
 
-	// TODAVIA NO IMPLEMENTADO (SE OPERA DIRECTO DEL CONTROLLER) TODO IMPLEMENTAR
-	// DESDE SERVICE
+	// TODAVIA NO IMPLEMENTADO (SE OPERA DIRECTO DEL CONTROLLER) TODO IMPLEMENTAR DESDE SERVICE
 	public WorkingTime updateWorkingTime(WorkingTime workingTime) {
 		return null;
 	}
@@ -90,7 +89,7 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 		//Traigo los datos de empleado y tipo de cada lista para poder operar con más facilidad
 		Optional<Employee> employee = employeeRepository.findById(workingTimeDTO.getEmployee());
 		Optional<WorkingType> type = workingTypeRepository.findById(workingTimeDTO.getType());
-
+ //TODO IMPLEMENTAR CHEQUEO DE HORAS POR DÍA Y POR SEMANA
 		if (workingTimeDTO.getType() == 1 //Valida en caso de turno normal
 				&& workingTimeDTO.getHours() >= type.get().getMinHours()
 				&& workingTimeDTO.getHours() <= type.get().getMaxHours()
