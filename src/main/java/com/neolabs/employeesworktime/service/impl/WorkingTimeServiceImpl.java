@@ -86,7 +86,7 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 	 * criterios del Tipo de Turno y las validaciones de cada caso predefinido
 	 * Turno Normal, Turno Extra, Dia libre y Vacaciones
 	 * en funcion del período de tiempo DIA.
-	 * TODO IMPLEMENTAR CHEQUEO DE HORAS POR DÍA Y POR SEMANA
+	 * TODO IMPLEMENTAR CHEQUEO DE HORAS POR DIA Y POR SEMANA
 	 */
 	public boolean checkWorkingTimeTypeValidDay(WorkingTimeDto workingTimeDTO, WorkingTimeRepository workingTimeRepository) {
 		//Traigo los datos de empleado y tipo de cada lista para poder operar con más facilidad
@@ -139,56 +139,7 @@ public class WorkingTimeServiceImpl implements WorkingTimeService {
 			} else return false;
 	}
 
-
-
 }
-
-
-
-
-
-
-	/**Método para obtener sumadas la cantidad de horas de trabajo que tiene cada empleado
-	 * por Tipo de Turno
-	 *
-	 * */
-//    public List<EmployeeHoursByWorkingType> getEmployeeHoursByWorkingType() {
-//        // Obtengo todos los employees
-//        List<Employee> employees = this.employeeRepository.findAll();
-//        // Obtengo todos los tipos de workingTime
-//        List<WorkingType> workingTypes = this.workingTypeRepository.findAll();
-//        // Creo una lista para devolver la respuesta
-//        List<EmployeeHoursByWorkingType> response = new ArrayList<>();
-//
-//        for (int i = 0; i < employees.size(); i++) {
-//            Employee employee = employees.get(i);
-//            ArrayList<HoursByWorkingTime> hoursByWorkingTime = new ArrayList<>();
-//
-//            // Encontrar las horas cargadas por cada workingType de workingTime
-//            for (int j = 0; j < workingTypes.size(); j++) {
-//                WorkingType workingType = workingTypes.get(j);
-//
-//                // Obtengo todas las workingTime del employee de cada workingType
-//                List<WorkingTime> workingTime = this.workingTimeRepository. findWorkingTimeByEmployeeIdAndWorkingType(employee.getId(), workingType.getId());
-//
-//                Long totalHours = 0L;
-//
-//                // Sumo todas las horas de trabajo en el dia
-//                for (int k = 0; k < workingTime.size(); k++) {
-//                    WorkingTime workingTime = workingTime.get(k);
-//                    totalHours += ChronoUnit.HOURS.between(workingTime.getStartTime(), workingTime.getEndTime());
-//                }
-//
-//                // Agrego las horas por el workingType
-//                hoursByWorkingTime.add(new HoursByWorkingTime(workingType.getName(), totalHours));
-//            }
-//
-//            // Agrego las horas por workingType de workingTime a la respuesta
-//            response.add(new EmployeeHoursByWorkingType(employee, hoursByWorkingTime));
-//        }
-//
-//        return response;
-//    }
 
 
 
