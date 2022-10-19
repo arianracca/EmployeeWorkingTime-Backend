@@ -33,14 +33,14 @@ public class WorkingTime {
     private Long id;
 
     @NotNull
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employeeID")
     private Employee employee;
 
     @NotNull
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "workingTypeID")
     private WorkingType type;
 

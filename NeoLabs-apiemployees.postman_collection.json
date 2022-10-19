@@ -1,0 +1,774 @@
+{
+	"info": {
+		"_postman_id": "ed7088e8-4fb4-4465-8a29-9e31eb37804d",
+		"name": "NeoLabs-apiemployees",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23562473"
+	},
+	"item": [
+		{
+			"name": "POST-Empleado1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Lorenzo\",\r\n    \"lastName\":\"Lamas\",\r\n    \"email\":\"elinmortal@gmail.com\",\r\n    \"phoneNumber\":\"445667899\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST-Empleado2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Maia\",\r\n    \"lastName\":\"Gandulfo\",\r\n    \"email\":\"ElPEREGRINOGRIS@gmail.com\",\r\n    \"phoneNumber\":\"0303456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST-Empleado3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"LUCAS\",\r\n    \"lastName\":\"Caminacielos\",\r\n    \"email\":\"nososmipadre@gmail.com\",\r\n    \"phoneNumber\":\"40000001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST-Empleado4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"alfio\",\r\n    \"lastName\":\"Demelmak\",\r\n    \"email\":\"ñamCATS@gmail.com\",\r\n    \"phoneNumber\":\"6633558\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET-Empleados-Todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET-Empleados-Uno-por-ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "1",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/employees/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"employees",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT-Empleado-por-ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Arian\",\r\n    \"lastName\":\"Racca\",\r\n    \"email\":\"arian@gmail.com\",\r\n    \"phoneNumber\":\"10105533\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/employees/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"employees",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE-Empleado-Uno-por-ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    Por seguridad no se ha permitido el metodo (TODO, implementar roles que permitan eliminación segura)\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/employees/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"employees",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tipo-Turno-Turno-Normal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\":\"Turno Normal\",\r\n    \"minHours\":\"6\",\r\n    \"maxHours\":\"8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tipo-Turno-Turno-Extra",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\":\"Turno extra\",\r\n    \"minHours\":\"2\",\r\n    \"maxHours\":\"6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tipo-Turno-Dia-Libre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\":\"Dia Libre\",\r\n    \"minHours\":\"24\",\r\n    \"maxHours\":\"24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tipo-Turno-Vacaciones",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\":\"Vacaciones\",\r\n    \"minHours\":\"24\",\r\n    \"maxHours\":\"24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tipo-Turno-Turno-Erroneo (Horas minimas > Horas maximas)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\":\"Turno Erroneo\",\r\n    \"minHours\":\"10\",\r\n    \"maxHours\":\"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET-Tipos-Turnos-Todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET-Tipo-Turno-Uno-por-ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "1",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtypes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtypes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE-Tipo-Turno-Uno-por-ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    Por seguridad no se ha permitido la peticion (TODO, implementar roles que permitan eliminación segura)\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtypes/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtypes",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jornada-Laboral-Turno-Normal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2022-10-02\",\r\n    \"employee\":1,\r\n    \"endTime\":\"16:00\",\r\n    \"startTime\":\"08:00\",\r\n    \"type\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtimes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtimes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jornada-Laboral-Turno-Extra",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2022-10-02\",\r\n    \"employee\":1,\r\n    \"endTime\":\"18:00\",\r\n    \"startTime\":\"16:00\",\r\n    \"type\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtimes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtimes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jornada-Laboral-Dia-Libre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2022-10-11\",\r\n    \"employee\":1,\r\n    \"endTime\":\"23:59\",\r\n    \"startTime\":\"00:00\",\r\n    \"type\":3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtimes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtimes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jornada-Laboral-Vacaciones",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2025-12-01\",\r\n    \"employee\":1,\r\n    \"endTime\":\"23:59\",\r\n    \"startTime\":\"00:00\",\r\n    \"type\":4\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtimes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtimes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jornada-Laboral-Actualizacion-Horarios",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"endTime\":\"18:00\",\r\n    \"startTime\":\"08:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtimes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtimes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jornada-Laboral-Todas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtimes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtimes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jornada-Laboral-por-Empleado",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtimes/hours/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtimes",
+						"hours",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jornada-Laboral-por-Empleado-y-Tipo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/apiemployees/v1/workingtimes/hours/1/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiemployees",
+						"v1",
+						"workingtimes",
+						"hours",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

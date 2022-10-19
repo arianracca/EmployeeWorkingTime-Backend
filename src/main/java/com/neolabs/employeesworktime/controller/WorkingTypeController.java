@@ -75,16 +75,16 @@ public class WorkingTypeController {
         return ResponseEntity.badRequest().body("Error al crear el Tipo de Turno");
     }
 
-//    /**Método para ELIMINAR el recurso de Tipo de Turno
-//     * */
-//    @DeleteMapping("/workingtypes/{id}")
-//    public ResponseEntity<Map<String,Boolean>> deleteWorkingType(@Valid @PathVariable Long id){
-//        WorkingType workingType = workingTypeRepository.findById(id)
-//                .orElseThrow(() -> new ResourceNotFoundException("No existe el Tipo de Turno solicitado"));
-//
-//        workingTypeRepository.delete(workingType);
-//        Map<String, Boolean> response = new HashMap<>();
-//        response.put("Eliminado correctamente", !workingTypeRepository.findById(id).isPresent());
-//        return ResponseEntity.ok(response);
-//    }
+    /**Método para ELIMINAR el recurso de Tipo de Turno
+     * */
+    @DeleteMapping("/workingtypes/{id}")
+    public ResponseEntity<Map<String,Boolean>> deleteWorkingType(@Valid @PathVariable Long id){
+        WorkingType workingType = workingTypeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No existe el Tipo de Turno solicitado"));
+
+        workingTypeRepository.delete(workingType);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Eliminado correctamente", !workingTypeRepository.findById(id).isPresent());
+        return ResponseEntity.ok(response);
+    }
 }

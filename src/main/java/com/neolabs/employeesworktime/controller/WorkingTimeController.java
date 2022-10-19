@@ -94,17 +94,17 @@ public class WorkingTimeController {
     }
 
 
-//    /**Método para ELIMINAR el recurso de Tipo de Turno
-//     * */
-//    @DeleteMapping("/workingtimes/{id}")
-//    public ResponseEntity<Map<String,Boolean>> deleteWorkingTime(@Valid @PathVariable Long id){
-//        WorkingTime workingTime = workingTimeRepository.findById(id)
-//                .orElseThrow(() -> new ResourceNotFoundException("No existe el registro solicitado"));
-//
-//        workingTimeRepository.delete(workingTime);
-//        Map<String, Boolean> response = new HashMap<>();
-//        response.put("Eliminado correctamente", !workingTimeRepository.findById(id).isPresent());
-//        return ResponseEntity.ok(response);
-//    }
+    /**Método para ELIMINAR el recurso de Tipo de Turno
+     * */
+    @DeleteMapping("/workingtimes/{id}")
+    public ResponseEntity<Map<String,Boolean>> deleteWorkingTime(@Valid @PathVariable Long id){
+        WorkingTime workingTime = workingTimeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No existe el registro solicitado"));
+
+        workingTimeRepository.delete(workingTime);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Eliminado correctamente", !workingTimeRepository.findById(id).isPresent());
+        return ResponseEntity.ok(response);
+    }
 
 }

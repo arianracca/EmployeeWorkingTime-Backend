@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -78,19 +80,19 @@ public class EmployeeController {
         return ResponseEntity.ok(updatedEmployee);
     }
 
-//    /**Método para ELIMINAR el recurso de Empleado
-//     * */
-//    @DeleteMapping("/employees/{id}")
-//    public ResponseEntity<Map<String,Boolean>> deleteEmployee(@Valid @PathVariable Long id){
-//        Employee employee = employeeRepository.findById(id)
-//                //Arroja una excepción si el empleado no fue encontrado
-//                .orElseThrow(() -> new ResourceNotFoundException("Empleado no encontrado."));
-//
-//        employeeRepository.delete(employee); //Elimina el Empleado
-//        Map<String, Boolean> response = new HashMap<>();
-//        //Indica si el empleado fue eliminado correctamente
-//        response.put("Eliminado correctamente", !employeeRepository.findById(id).isPresent());
-//        return ResponseEntity.ok(response);
-//    }
+    /**Método para ELIMINAR el recurso de Empleado
+     * */
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity<Map<String,Boolean>> deleteEmployee(@Valid @PathVariable Long id){
+        Employee employee = employeeRepository.findById(id)
+                //Arroja una excepción si el empleado no fue encontrado
+                .orElseThrow(() -> new ResourceNotFoundException("Empleado no encontrado."));
+
+        employeeRepository.delete(employee); //Elimina el Empleado
+        Map<String, Boolean> response = new HashMap<>();
+        //Indica si el empleado fue eliminado correctamente
+        response.put("Eliminado correctamente", !employeeRepository.findById(id).isPresent());
+        return ResponseEntity.ok(response);
+    }
 
 }

@@ -1,0 +1,8 @@
+com.neolabs.employeesworktime
+com.neolabs.employeesworktime.controller
+com.neolabs.employeesworktime.dto
+com.neolabs.employeesworktime.entity
+com.neolabs.employeesworktime.exception
+com.neolabs.employeesworktime.repository
+com.neolabs.employeesworktime.service
+com.neolabs.employeesworktime.service.impl
